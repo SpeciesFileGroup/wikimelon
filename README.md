@@ -32,7 +32,7 @@ SELECT ?human ?humanLabel ?zoobank WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 } LIMIT 100 OFFSET 0
 """
-Wikimelon.query(query, limit: 100, offset: 0) #  => MultiJson object
+Wikimelon.query(query) #  => MultiJson object
 ```
 
 ---
