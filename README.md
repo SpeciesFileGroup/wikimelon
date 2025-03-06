@@ -1,6 +1,6 @@
 # Wikimelon
 
-Wikimelon is a Ruby wrapper on the [Wikidata](https://wikidata.org) API. Code follow the spirit/approach of the Gem [serrano](https://github.com/sckott/serrano), and indeed much of the wrapping utility is copied 1:1 from that repo, thanks [@sckott](https://github.com/sckott).
+Wikimelon is a lightweight Ruby wrapper on the [Wikidata](https://wikidata.org) API. Code follow the spirit/approach of the Gem [serrano](https://github.com/sckott/serrano), and indeed much of the wrapping utility is copied 1:1 from that repo, thanks [@sckott](https://github.com/sckott).
 
 ## Installation
 
@@ -25,14 +25,34 @@ Or install it yourself as:
 ### Queries
 Run a Wikidata query:
 ```ruby
-query = """
+query = "
 SELECT ?human ?humanLabel ?zoobank WHERE {
   ?human wdt:P31 wd:Q5.
   ?human wdt:P2006 ?zoobank.
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 } LIMIT 100 OFFSET 0
-"""
+"
 Wikimelon.query(query) #  => MultiJson object
+```
+
+---
+### Entities
+Fetch data on an item:
+```ruby
+entity_id = "Q13"
+Wikimelon.entity(entity_id) #  => MultiJson object
+```
+
+Fetch data on a property:
+```ruby
+entity_id = "P31"
+Wikimelon.entity(entity_id) #  => MultiJson object
+```
+
+Fetch data on an entity with a specific revision ID:
+```ruby
+entity_id = "Q13"
+Wikimelon.entity(entity_id, revision_id: 109) #  => MultiJson object
 ```
 
 ---

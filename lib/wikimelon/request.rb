@@ -12,7 +12,7 @@ module Wikimelon
     attr_accessor :options
 
     def initialize(**args)
-      @endpoint = args[:endpoint]
+      @url = args[:url]
       @verbose = args[:verbose]
       @query = args[:query]
       @limit = args[:limit]
@@ -27,17 +27,10 @@ module Wikimelon
 
       Faraday::Utils.default_space_encoding = "+"
 
-      conn = if verbose
-               Faraday.new(url: Wikimelon.base_url) do |f|
-                 f.response :logger
-                 f.use Faraday::WikimelonErrors::Middleware
-                 f.adapter Faraday.default_adapter
-               end
-             else
-               Faraday.new(url: Wikimelon.base_url) do |f|
-                 f.use Faraday::WikimelonErrors::Middleware
-                 f.adapter Faraday.default_adapter
-               end
+      conn = Faraday.new(url: @url) do |f|
+              f.response :logger if verbose
+              f.use Faraday::WikimelonErrors::Middleware
+              f.adapter Faraday.default_adapter
              end
 
       conn.headers['Accept'] = 'application/json,*/*'
