@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require "faraday"
-require "multi_json"
+require "json"
 
 # @private
 module Faraday
@@ -41,7 +41,7 @@ module Faraday
       def error_body(body)
         if !body.nil? && !body.empty? && body.is_a?(String)
           if json?(body)
-            body = ::MultiJson.load(body)
+            body = ::JSON.parse(body)
             if body["message"].nil?
               body = nil
             else
@@ -62,9 +62,9 @@ module Faraday
       end
 
       def json?(string)
-        MultiJson.load(string)
+        JSON.parse(string)
         true
-      rescue MultiJson::ParseError
+      rescue JSON::ParserError
         false
       end
     end

@@ -5,6 +5,7 @@
 require 'test/unit'
 require 'wikimelon'
 require 'vcr'
+require 'webmock/test_unit'
 
 VCR.configure do |c|
   c.cassette_library_dir = 'test/fixtures/vcr'
