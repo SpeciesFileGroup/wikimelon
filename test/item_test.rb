@@ -3,12 +3,12 @@ require_relative "test_helper"
 class TestItem < Test::Unit::TestCase
 
   def test_find_and_label
-    VCR.use_cassette("test_item_find") do
-      item = Wikimelon::Item.find('Q42')
-      assert_equal('Q42', item.id)
+    VCR.use_cassette("test_item_find_label") do
+      item = Wikimelon::Item.find('Q1')
+      assert_equal('Q1', item.id)
       assert_true(item.exists?)
-      assert_equal('Douglas Adams', item.label)
-      assert_equal('Douglas Adams', item.label('en'))
+      assert_equal('universe', item.label)
+      assert_equal('universe', item.label('en'))
     end
   end
 

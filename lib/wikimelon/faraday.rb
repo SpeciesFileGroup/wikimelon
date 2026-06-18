@@ -20,7 +20,7 @@ module Faraday
           when 502
             raise Wikimelon::BadGateway, error_message_500(response, "The server returned an invalid or incomplete response.")
           when 503
-            raise Wikimelon::ServiceUnavailable, error_message_500(response, "Crossref is rate limiting your requests.")
+            raise Wikimelon::ServiceUnavailable, error_message_500(response, "Wikidata is rate limiting your requests.")
           when 504
             raise Wikimelon::GatewayTimeout, error_message_500(response, "504 Gateway Time-out")
           end

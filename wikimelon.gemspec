@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.description   = "Wikimelon is a low-level wrapper around the Wikidata API."
   s.homepage      = "https://github.com/SpeciesFileGroup/wikimelon"
   s.license       = "MIT"
-  s.required_ruby_version = ">= 2.7.0"
+  s.required_ruby_version = [">= 2.7.0", "< 5.0"]
 
  # s.metadata["allowed_push_host"] = "TODO: Set to 'https://mygemserver.com'"
 
@@ -36,10 +36,12 @@ Gem::Specification.new do |s|
   s.add_development_dependency "test-unit", "~> 3.3", ">= 3.3.6"
   s.add_development_dependency "vcr", "~> 6.0"
   s.add_development_dependency "webmock", "~> 3.18"
+  s.add_development_dependency "rexml", "~> 3.3", ">= 3.3.6"
+  s.add_development_dependency "irb", "~> 1.0"
   # s.add_development_dependency "byebug"
 
   s.add_runtime_dependency "faraday", "~> 2.2"
-  s.add_runtime_dependency "faraday-follow_redirects", ">= 0.1", "< 0.4"
+  s.add_runtime_dependency "faraday-follow_redirects", ">= 0.1", "< 0.6"
   s.add_runtime_dependency "faraday-retry", "~> 2.2"
 
   #  s.add_runtime_dependency "thor", "~> 1.0", ">= 1.0.1"

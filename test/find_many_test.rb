@@ -4,12 +4,12 @@ class TestFindMany < Test::Unit::TestCase
 
   def test_item_find_many_preserves_order
     VCR.use_cassette("test_item_find_many") do
-      ids = ['Q42', 'Q13', 'Q1']
+      ids = ['Q5', 'Q13', 'Q1']
       items = Wikimelon::Item.find_many(ids)
       assert_equal(ids, items.map(&:id))
       assert(items.all? { |i| i.exists? })
       labels = items.map(&:label)
-      assert_equal('Douglas Adams', labels[0])
+      assert_equal('human', labels[0])
       assert_equal('triskaidekaphobia', labels[1])
       assert_equal('universe', labels[2])
     end
